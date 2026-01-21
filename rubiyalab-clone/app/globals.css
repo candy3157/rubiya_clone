@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* 부드러운 스크롤 */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+    transform: none;
+  }
+}
+
+body {
+  background-image: url("/black-glitch-effect-texture-background.jpg");
+  background-repeat: repeat;
+  background-size: 240px 240px;
+  background-color: #fcfcfc;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* 노이즈 텍스처 */
+  background-image: url("/black-glitch-effect-texture-background.jpg");
+  background-repeat: repeat;
+  background-size: 240px 240px;
+  background-color: transparent;
+
+  /* 느낌 조절 */
+  opacity: 0.02;
+  mix-blend-mode: normal;
+
+}
+
+/* 컨텐츠는 오버레이 위로 올라오게 */
+body > *:not(.noise-overlay) {
+  position: relative;
+  z-index: 1;
+}
